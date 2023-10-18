@@ -1,0 +1,50 @@
+// IDL file 
+
+namespace br.com.rbcti.publisher.common.messages.fbs;
+
+table HeaderFbs {
+    message_id: uint16;
+    version: uint8;
+    usn: int64;    
+}
+
+// Login Request Message
+table LoginRequestFbs {
+    header: HeaderFbs;
+    user_name: string;
+    password: string;
+}
+
+// Login Response Message
+table LoginResponseFbs {
+    header: HeaderFbs;
+    response_code: int8;
+    authentication_token: string;
+}
+
+table PostArticleRequestFbs {
+    header: HeaderFbs;
+    authentication_token: string;
+    subject: string;
+    article: string;
+    tags: [string];
+}
+
+table PostArticleResponseFbs {
+    header: HeaderFbs;
+    response_code: int8;
+    article_uuid: string;    
+}
+
+union AllProtocolMessagesFbs {
+    loginRequest: LoginRequestFbs = 5,
+    loginResponseFbs: LoginResponseFbs = 6,
+    postArticleRequestFbs: PostArticleRequestFbs = 7,
+    postArticleResponseFbs: PostArticleResponseFbs = 8
+}
+
+table ProtocolMessageFbs {
+    message: AllProtocolMessagesFbs;
+}
+
+root_type ProtocolMessageFbs;
