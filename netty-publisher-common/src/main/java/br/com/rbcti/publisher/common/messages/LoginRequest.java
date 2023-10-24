@@ -81,14 +81,14 @@ public class LoginRequest implements SimpleMessage {
         
         FlatBufferBuilder builder = new FlatBufferBuilder();
         
-        int headerOffset = HeaderFbs.createHeaderFbs(builder, AllProtocolMessagesFbs.loginRequest, getVersion(), getUsn());
+        int headerOffset = HeaderFbs.createHeaderFbs(builder, AllProtocolMessagesFbs.loginRequestFbs, getVersion(), getUsn());
         int userNameOffset = builder.createString(getUserName());
         int passwordOffset = builder.createString(getPassword());
         int loginOffset = LoginRequestFbs.createLoginRequestFbs(builder, headerOffset, userNameOffset, passwordOffset);
 
         ProtocolMessageFbs.startProtocolMessageFbs(builder);
         ProtocolMessageFbs.addMessage(builder, loginOffset);
-        ProtocolMessageFbs.addMessageType(builder, AllProtocolMessagesFbs.loginRequest);
+        ProtocolMessageFbs.addMessageType(builder, AllProtocolMessagesFbs.loginRequestFbs);
         int endOffset = ProtocolMessageFbs.endProtocolMessageFbs(builder);
         ProtocolMessageFbs.finishProtocolMessageFbsBuffer(builder, endOffset);
         

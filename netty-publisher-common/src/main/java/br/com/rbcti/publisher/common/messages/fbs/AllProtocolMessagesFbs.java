@@ -6,12 +6,12 @@ package br.com.rbcti.publisher.common.messages.fbs;
 public final class AllProtocolMessagesFbs {
   private AllProtocolMessagesFbs() { }
   public static final byte NONE = 0;
-  public static final byte loginRequest = 5;
+  public static final byte loginRequestFbs = 5;
   public static final byte loginResponseFbs = 6;
   public static final byte postArticleRequestFbs = 7;
   public static final byte postArticleResponseFbs = 8;
 
-  public static final String[] names = { "NONE", "", "", "", "", "loginRequest", "loginResponseFbs", "postArticleRequestFbs", "postArticleResponseFbs", };
+  public static final String[] names = { "NONE", "", "", "", "", "loginRequestFbs", "loginResponseFbs", "postArticleRequestFbs", "postArticleResponseFbs", };
 
   public static String name(int e) { return names[e]; }
 }

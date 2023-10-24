@@ -29,7 +29,7 @@ public class MessageFactory {
 
         switch (messageProtocol.messageType()) {
         
-            case AllProtocolMessagesFbs.loginRequest:
+            case AllProtocolMessagesFbs.loginRequestFbs:
                 message = decodeLoginRequest(messageProtocol);
                 break;
     

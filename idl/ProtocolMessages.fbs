@@ -37,7 +37,7 @@ table PostArticleResponseFbs {
 }
 
 union AllProtocolMessagesFbs {
-    loginRequest: LoginRequestFbs = 5,
+    loginRequestFbs: LoginRequestFbs = 5,
     loginResponseFbs: LoginResponseFbs = 6,
     postArticleRequestFbs: PostArticleRequestFbs = 7,
     postArticleResponseFbs: PostArticleResponseFbs = 8
