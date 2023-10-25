@@ -2,7 +2,7 @@
 [![en](https://github.com/renatocunha216/common/blob/main/images/lang-en.svg?raw=true)](https://github.com/renatocunha216/netty-article-publisher/blob/main/README.en.md)
 [![pt-br](https://github.com/renatocunha216/common/blob/main/images/lang-pt-br.svg?raw=true)](https://github.com/renatocunha216/netty-article-publisher/blob/main/README.md)
 
-Exemplo de uso do framework [Netty](https://netty.io/) NIO em uma aplicação cliente servidor com FlatBuffers para serializar os dados do protocolo.
+Exemplo de uso do framework [Netty](https://netty.io/) NIO em uma aplicação cliente servidor com [FlatBuffers](https://flatbuffers.dev/) para serializar os dados do protocolo.
 
 
 ### Protocolo da aplicação

@@ -2,7 +2,7 @@
 [![en](https://github.com/renatocunha216/common/blob/main/images/lang-en.svg?raw=true)](https://github.com/renatocunha216/netty-article-publisher/blob/main/README.en.md)
 [![pt-br](https://github.com/renatocunha216/common/blob/main/images/lang-pt-br.svg?raw=true)](https://github.com/renatocunha216/netty-article-publisher/blob/main/README.md)
 
-Example of using the [Netty](https://netty.io/) NIO client server framework with FlatBuffers for protocol data serialization.
+Example of using the [Netty](https://netty.io/) NIO client server framework with [FlatBuffers](https://flatbuffers.dev/) for protocol data serialization.
 
 ### Application protocol
 
