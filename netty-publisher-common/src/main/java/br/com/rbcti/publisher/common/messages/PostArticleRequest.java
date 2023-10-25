@@ -3,6 +3,13 @@ package br.com.rbcti.publisher.common.messages;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.flatbuffers.FlatBufferBuilder;
+
+import br.com.rbcti.publisher.common.messages.fbs.AllProtocolMessagesFbs;
+import br.com.rbcti.publisher.common.messages.fbs.HeaderFbs;
+import br.com.rbcti.publisher.common.messages.fbs.PostArticleRequestFbs;
+import br.com.rbcti.publisher.common.messages.fbs.ProtocolMessageFbs;
+
 /**
  * 
  * 
@@ -21,6 +28,8 @@ public class PostArticleRequest implements SimpleMessage {
     
     public PostArticleRequest() {
         this.tags = new ArrayList<String>();
+        this.messageId = Messages.POST_ARTICLE_REQUEST;
+        this.version = 1;
     }
 
     public void setMessageId(int messageId) {
@@ -84,8 +93,35 @@ public class PostArticleRequest implements SimpleMessage {
 
     @Override
     public byte[] getData() {
-        // TODO Auto-generated method stub
-        return null;
+        
+        FlatBufferBuilder builder = new FlatBufferBuilder();
+        
+        int headerOffset = HeaderFbs.createHeaderFbs(builder, AllProtocolMessagesFbs.postArticleRequestFbs, getVersion(), getUsn());
+        int authenticationTokenOffset = builder.createString(getAuthenticationToken());
+        int subjectOffset = builder.createString(getSubject());
+        int articleOffset = builder.createString(getArticle());
+        int tagsVectorOffset = 0;
+        
+        if ((this.tags != null) && (this.tags.size() > 0)) {
+            int[] tagsOffsets = new int[this.tags.size()];
+            int i = 0;
+            for (String tag : tags) {
+                tagsOffsets[i] = builder.createString(tag);
+                i++;
+            }
+            
+            tagsVectorOffset = PostArticleRequestFbs.createTagsVector(builder, tagsOffsets);
+        }
+        
+        int postArticleOffset = PostArticleRequestFbs.createPostArticleRequestFbs(builder, headerOffset, authenticationTokenOffset, subjectOffset, articleOffset, tagsVectorOffset);
+        
+        ProtocolMessageFbs.startProtocolMessageFbs(builder);
+        ProtocolMessageFbs.addMessage(builder, postArticleOffset);
+        ProtocolMessageFbs.addMessageType(builder, AllProtocolMessagesFbs.postArticleRequestFbs);
+        int endOffset = ProtocolMessageFbs.endProtocolMessageFbs(builder);
+        ProtocolMessageFbs.finishProtocolMessageFbsBuffer(builder, endOffset);      
+        
+        return builder.sizedByteArray();
     }
     
     @Override
