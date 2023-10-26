@@ -109,7 +109,7 @@ public class PostArticleRequest implements SimpleMessage {
                 tagsOffsets[i] = builder.createString(tag);
                 i++;
             }
-            
+
             tagsVectorOffset = PostArticleRequestFbs.createTagsVector(builder, tagsOffsets);
         }
         
