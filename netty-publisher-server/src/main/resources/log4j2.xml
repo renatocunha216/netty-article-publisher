@@ -29,11 +29,11 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="br.com.rbcti" level="info" additivity="false">
+        <Logger name="br.com.rbcti" level="DEBUG" additivity="false">
             <AppenderRef ref="fileLogger" />
         </Logger>
 
-        <Root level="info" additivity="false">
+        <Root level="INFO" additivity="false">
             <appender-ref ref="fileLogger" />
         </Root>
     </Loggers>
