@@ -7,6 +7,7 @@ import br.com.rbcti.publisher.common.messages.fbs.HeaderFbs;
 import br.com.rbcti.publisher.common.messages.fbs.LoginRequestFbs;
 import br.com.rbcti.publisher.common.messages.fbs.LoginResponseFbs;
 import br.com.rbcti.publisher.common.messages.fbs.PostArticleRequestFbs;
+import br.com.rbcti.publisher.common.messages.fbs.PostArticleResponseFbs;
 import br.com.rbcti.publisher.common.messages.fbs.ProtocolMessageFbs;
 
 /**
@@ -42,6 +43,7 @@ public class MessageFactory {
                 break;
     
             case AllProtocolMessagesFbs.postArticleResponseFbs:
+                message = decodePostArticleResponse(messageProtocol);
                 break;
     
             default:
@@ -107,5 +109,20 @@ public class MessageFactory {
         
         return postArticleRequest;        
     }
+    
+    private static PostArticleResponse decodePostArticleResponse(ProtocolMessageFbs _messageProtocol) {
+        
+        PostArticleResponseFbs response = (PostArticleResponseFbs) _messageProtocol.message(new PostArticleResponseFbs());
+        HeaderFbs header = response.header();
+        
+        PostArticleResponse postArticleResponse = new PostArticleResponse();
+        postArticleResponse.setMessageId(header.messageId());
+        postArticleResponse.setVersion(header.version());
+        postArticleResponse.setUsn(header.usn());
+        postArticleResponse.setArticleUuid(response.articleUuid());
+        postArticleResponse.setResponseCode(response.responseCode());
+        
+        return postArticleResponse;        
+    }      
 
 }

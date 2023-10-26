@@ -7,9 +7,10 @@ import br.com.rbcti.publisher.common.messages.SimpleMessage;
 import io.netty.channel.ChannelHandlerContext;;
 
 /**
- *
+ * 
+ * 
  * @author Renato Cunha
- *
+ * @version 1.0
  */
 public class LoginCommand implements Command {
 

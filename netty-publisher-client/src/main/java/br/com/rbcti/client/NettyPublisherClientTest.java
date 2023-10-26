@@ -7,6 +7,8 @@ import org.apache.logging.log4j.Logger;
 import br.com.rbcti.client.handlers.ClientHandler;
 import br.com.rbcti.publisher.common.messages.LoginRequest;
 import br.com.rbcti.publisher.common.messages.LoginResponse;
+import br.com.rbcti.publisher.common.messages.PostArticleRequest;
+import br.com.rbcti.publisher.common.messages.PostArticleResponse;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -85,11 +87,11 @@ public class NettyPublisherClientTest {
         workerGroup.shutdownGracefully().awaitUninterruptibly(5000);
     }
 
-    public LoginResponse loginRequest(LoginRequest request) throws Exception {
+    public LoginResponse login(LoginRequest request) throws Exception {
 
         long startTime = System.currentTimeMillis();
         ClientHandler clientHandler = (ClientHandler) getChannel().pipeline().get("clientHandler");
-        LoginResponse response = clientHandler.loginRequest(request);
+        LoginResponse response = clientHandler.login(request);
         long endTime = System.currentTimeMillis();
 
         if (LOGGER.isDebugEnabled()) {
@@ -97,5 +99,18 @@ public class NettyPublisherClientTest {
         }
         return response;
     }
+    
+    public PostArticleResponse postArticle(PostArticleRequest request) throws Exception {
+
+        long startTime = System.currentTimeMillis();
+        ClientHandler clientHandler = (ClientHandler) getChannel().pipeline().get("clientHandler");
+        PostArticleResponse response = clientHandler.postArticle(request);
+        long endTime = System.currentTimeMillis();
+
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("{} message processing time {} ms", PostArticleRequest.class.getSimpleName(), Long.valueOf(endTime - startTime));
+        }
+        return response;
+    }    
     
 }

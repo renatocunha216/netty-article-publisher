@@ -9,16 +9,18 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.rbcti.publisher.common.messages.LoginRequest;
 import br.com.rbcti.publisher.common.messages.LoginResponse;
+import br.com.rbcti.publisher.common.messages.PostArticleRequest;
+import br.com.rbcti.publisher.common.messages.PostArticleResponse;
 import br.com.rbcti.publisher.common.messages.SimpleMessage;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 /**
- *
- *
+ * 
+ * 
  * @author Renato Cunha
- *
+ * @version 1.0
  */
 public class ClientHandler extends SimpleChannelInboundHandler<SimpleMessage> {
 
@@ -51,7 +53,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<SimpleMessage> {
         return msg;
     }
 
-    public synchronized LoginResponse loginRequest(LoginRequest request) throws Exception {
+    public synchronized LoginResponse login(LoginRequest request) throws Exception {
 
         LoginResponse response = null;
 
@@ -69,6 +71,25 @@ public class ClientHandler extends SimpleChannelInboundHandler<SimpleMessage> {
 
         return response;
     }
+    
+    public synchronized PostArticleResponse postArticle(PostArticleRequest request) throws Exception {
+
+        PostArticleResponse response = null;
+
+        Channel _channel = getChannel();
+
+        if ((_channel != null) && (_channel.isActive())) {
+            _channel.writeAndFlush(request);
+            SimpleMessage simpleMessage = getMessageAndCheck(request.getUsn());
+
+            response = (PostArticleResponse) simpleMessage;
+
+        } else {
+            throw new Exception("Client is disconnected.");
+        }
+
+        return response;
+    }    
 
     public Channel getChannel() {
         return channel;

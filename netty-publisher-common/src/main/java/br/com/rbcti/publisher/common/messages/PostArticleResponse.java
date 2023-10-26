@@ -25,6 +25,13 @@ public class PostArticleResponse implements SimpleMessage {
         this.messageId = Messages.POST_ARTICLE_RESPONSE;
         this.version = 1;
     }
+    
+    public PostArticleResponse(long usn, byte responseCode, String articleUuid) {
+        this();
+        this.usn = usn;
+        this.responseCode = responseCode;        
+        this.articleUuid = articleUuid;
+    }    
 
     public byte getResponseCode() {
         return responseCode;

@@ -19,6 +19,7 @@ public class CommandFactory {
         registeredCommands = new HashMap<Integer, Command>();
         
         registeredCommands.put(Integer.valueOf(Messages.LOGIN_REQUEST), new LoginCommand());
+        registeredCommands.put(Integer.valueOf(Messages.POST_ARTICLE_REQUEST), new PostArticleCommand());
         
     }
 

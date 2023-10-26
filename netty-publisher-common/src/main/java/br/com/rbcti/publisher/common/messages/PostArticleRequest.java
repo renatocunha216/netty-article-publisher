@@ -87,8 +87,9 @@ public class PostArticleRequest implements SimpleMessage {
         return tags;
     }
 
-    public void addTags(String tag) {
+    public PostArticleRequest addTags(String tag) {
         this.tags.add(tag);
+        return this;
     }
 
     @Override
