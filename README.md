@@ -38,9 +38,11 @@ table ProtocolMessageFbs {
 }
 ```
 
-
-
-
-
-
 ### Exemplo de uso
+
+**Servidor**:<br>
+Execute o método **main** da classe [br.com.rbcti.server.PublisherServerTest](https://github.com/renatocunha216/netty-article-publisher/blob/main/netty-publisher-server/src/main/java/br/com/rbcti/server/PublisherServerTest.java)<br>
+
+**Cliente**:<br>
+Execute o método **main** da classe [br.com.rbcti.client.ExampleNettyPublisherClient](https://github.com/renatocunha216/netty-article-publisher/blob/main/netty-publisher-client/src/test/java/br/com/rbcti/client/ExampleNettyPublisherClient.java)<br>
+
