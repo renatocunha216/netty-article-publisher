@@ -46,7 +46,7 @@ public class PostArticleRequestMessageTest {
             
             for (int x = 0; x < tagIndex.length; x++) {
                 tagIndex[x] = (int) (Math.random() * (tagIndex.length));
-                postArticleRequest.addTags(tags[tagIndex[x]]);                
+                postArticleRequest.addTag(tags[tagIndex[x]]);                
             }
             
             byte[] flatBufferData = postArticleRequest.getData();

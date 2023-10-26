@@ -42,7 +42,7 @@ public class ExampleNettyPublisherClient {
                 article1.setSubject("Software Engineering");
                 article1.setArticle("Article content.");
                 article1.setUsn(usn++);
-                article1.addTags("java").addTags("netty").addTags("flatbuffers");
+                article1.addTag("java").addTag("netty").addTag("flatbuffers");
                 
                 PostArticleResponse respose1 = client.postArticle(article1);
                 
@@ -54,8 +54,8 @@ public class ExampleNettyPublisherClient {
                 article2.setSubject("Health");
                 article2.setArticle("Article content.");
                 article2.setUsn(usn++);
-                article2.addTags("food").addTags("gym").addTags("fitness");
-                article2.addTags("medicine").addTags("stress").addTags("obesity");
+                article2.addTag("food").addTag("gym").addTag("fitness");
+                article2.addTag("medicine").addTag("stress").addTag("obesity");
                 
                 PostArticleResponse respose2 = client.postArticle(article2);
                 

@@ -103,7 +103,7 @@ public class MessageFactory {
 
         if (tagsLength > 0) {
             for (int c = 0; c < tagsLength; c++) {
-                postArticleRequest.addTags(postArticle.tags(c));
+                postArticleRequest.addTag(postArticle.tags(c));
             }
         }
 
